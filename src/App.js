@@ -150,8 +150,9 @@ function 함수(){
       <h4>{ 글제목[2] } <span> </span>  </h4>
       <p>12월 6일 발행</p>
     </div>
-   
+ 
    <Modal/>
+
    {/* 참고 - <Modal></Modal> 이렇게해도 되지만 <Modal/> 이렇게 해도 된다~! */}
    </div>
     </div>
@@ -182,15 +183,48 @@ function 함수(){
   2. 큰 페이지들
   3. 자주 변경되는(따봉같은거) html UI들 (성능상 좋을수도 있습니다. 항상그런건 아니고.)
 */
+
+/* 컴포넌트의 단점 =====================
+  state를 가져다 쓸 때 문제가 생긴다. (다른 함수에 있으니까!!)
+*/
+
+// 컴포넌트 만드는 다른 방식 : 
+// const Modal2 = () => {} 변수를 만들고 그안에 함수를 넣었으니까 이렇게 만들어도 됨. 
+
 function Modal(){ //
   return (
     <div className='modal'>
-        <h4>제목</h4>
+        <h4></h4>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
   )
 }
+
+
+/* 컴포넌트 만드는 연습함 
+   <Ddakdae/>
+   <Manifasto />
+function Ddakdae(){
+  return (
+    <div>
+      <h1>짱</h1>
+      <a href='https://www.naver.com' target='blank'>안녕하세요?</a>
+   </div>
+  )
+}
+
+const Manifasto = ()=>{ //그냥 이름없는함수를 만든 다음에 변수에 할당.
+  return(
+    <div>
+    <h1>바보</h1>
+    <a href='https://www.naver.com' target='blank'>안녕?</a>
+ </div>
+  )
+} 
+  
+
+*/
 export default App;
 
 
