@@ -46,7 +46,7 @@ function App() {
 
   //map 사용법 =====
   //[1,2,3].map(function(){})
-  //map은 모든 array자료 뒤에 쓸 수 있다. map() 안에는 콜백 함수가 들어간다.
+  //map은 모든 array자료 뒤에 쓸 수 있다. map() 안에는 콜백 함수(괄호안에 함수가 있는 것)가 들어간다.
   //1. array 자료 갯수만큼 함수 안의 코드를 실행해줌.
   //2. 함수의 파라미터는 array 안에 있던 자료.
   //3. return에 뭐 넣으면 array로 담아줌.
@@ -153,7 +153,7 @@ function App() {
        */}
 
       <div>
-        <div className="list">
+        {/* <div className="list">
           <h4>
             {글제목[0]}{" "}
             <span
@@ -167,10 +167,10 @@ function App() {
             {따봉}{" "}
           </h4>
           {/* 이벤트핸들러~ 클릭하면~ <할 일>. 이니까 안에 함수 제대로 써줘야 함!!!!!!! 
-        안에 꼭 함수로 넣어야 한다는 점 잊지 말기. 자꾸 실수함!!! */}
-          <p>12월 6일 발행</p>
-        </div>
-        <div className="list">
+          안에 꼭 함수로 넣어야 한다는 점 잊지 말기. 자꾸 실수함!!! */}
+        {/* <p>12월 6일 발행</p> */}
+        {/*</div> */}
+        {/* <div className="list">
           <h4
             onClick={() => {
               setModal(true);
@@ -180,8 +180,8 @@ function App() {
             {글제목[1]} <span> </span>{" "}
           </h4>
           <p>12월 6일 발행</p>
-        </div>
-        <div className="list">
+        </div> */}
+        {/* <div className="list">
           <h4
             onClick={() => {
               setModal(true);
@@ -191,18 +191,39 @@ function App() {
             {글제목[2]} <span> </span>{" "}
           </h4>
           <p>12월 6일 발행</p>
-        </div>
+        </div> */}
+      </div>
 
-        {/* JSX에서 자바스크립트를 문법을 쓰고 싶으면 그냥 중괄호를 열면 된다!!!!!!!!! 
+      {/* {[1, 2, 3].map(() => {
+        return <div>안녕</div>;
+        // 이게 array자료형으로 담겨있어서 [<div>안녕</div>,<div>안녕</div>,<div>안녕</div>] 이렇게 나옴
+        // react에서는 배열에 html을 담아도 잘 보여줍니다. 해체해서 예쁘게 html들만 보여줌. 그래서 이렇게 구현이 가능한 것.
+        // 여러줄일때는 return에 괄호쳐서 return ( 요 안에 쓰면 됨 )
+      })} */}
+
+      {
+        //배열을 쓰면 되는거니까 여기서 state를 갖다 쓰면 그 state에 있는 갯수만큼 출력이 되는 것~!
+        글제목.map(() => {
+          return (
+            <div className="list">
+              <h4>
+                {글제목[1]} <span> </span>{" "}
+              </h4>
+              <p>12월 6일 발행</p>
+            </div>
+          );
+        })
+        //중괄호 쓰는거 빼먹으면 안됨!!!!
+      }
+      {/* JSX에서 자바스크립트를 문법을 쓰고 싶으면 그냥 중괄호를 열면 된다!!!!!!!!! 
     === JSX안에서는 if문/for문 이런걸 쓸수 없다. 대신 !!!삼항연산자!!! 씀. 
       => html 중간에 조건문을 써야 하면 삼항연산자를 쓰면 된다. */}
-        {
-          modal == true ? <Modal /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
-          // 이 안에서는 세미콜론 쓰면 안되는듯?
-        }
+      {
+        modal == true ? <Modal /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
+        // 이 안에서는 세미콜론 쓰면 안되는듯?
+      }
 
-        {/* 참고 - <Modal></Modal> 이렇게해도 되지만 <Modal/> 이렇게 해도 된다~! */}
-      </div>
+      {/* 참고 - <Modal></Modal> 이렇게해도 되지만 <Modal/> 이렇게 해도 된다~! */}
     </div>
   );
 }
