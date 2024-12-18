@@ -252,7 +252,13 @@ function App() {
     === JSX안에서는 if문/for문 이런걸 쓸수 없다. 대신 !!!삼항연산자!!! 씀. 
       => html 중간에 조건문을 써야 하면 삼항연산자를 쓰면 된다. */}
       {
-        modal == true ? <Modal 글제목={글제목} /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
+        modal == true ? (
+          <Modal
+            글제목함수={() => {
+              글제목변경(글제목), 글제목;
+            }}
+          />
+        ) : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
         // 이 안에서는 세미콜론 쓰면 안되는듯?
       }
 
@@ -316,7 +322,7 @@ function Modal(props) {
       {/* 내가 정한 name 으로 불러와야함!!!!! 주의!!!!! */}
       <p>날짜</p>
       <p>상세내용</p>
-      <button>글수정</button>
+      <button onClick={props.글제목함수}>글수정</button>
     </div>
   );
 }
