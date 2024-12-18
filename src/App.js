@@ -134,7 +134,7 @@ function App() {
       <h4 style={{color:'red'}}>{post}</h4>
        
        {/* onClick={} 안에는 !!!!함수 이름을!!!! 넣어야 한다. 코드를 그냥 쓰는 게 아니라
-       코드를 다 짜놓은 >>>>>>>함수 이름<<<<<<< 하나만 넣어라. 
+       코드를 다 짜놓은 함수 이름 하나만 넣어라. 
        
        => 함수 정의를 바로 넣어놔도 상관 없음.
       예를 들면 onClick={ function(){   ~~~~  }} 이렇게해도 ok
@@ -309,7 +309,9 @@ function App() {
 // const Modal2 = () => {} 변수를 만들고 그안에 함수를 넣었으니까 이렇게 만들어도 됨.
 
 function Modal(props) {
-  //
+  let copy = [...props.글제목];
+  copy[0] = "딱대 코트 추천";
+
   return (
     <div className="modal">
       <h4>{props.글제목[0]}</h4>
@@ -318,7 +320,7 @@ function Modal(props) {
       <p>상세내용</p>
       <button
         onClick={() => {
-          props.글제목변경();
+          props.글제목변경(copy);
         }}
       >
         글수정
@@ -326,6 +328,7 @@ function Modal(props) {
     </div>
   );
 }
+
 // 여기서는 위에서 만들어놨던 state 글제목(위에 APP function에 있음)을 마음대로 갖다 쓸 수가 없다!!! 다른함수잖아
 // props를 쓰면 이걸 해결할 수 있다.
 // 현재 사이트 구조 : APP이라는 커다란 컴포넌트 위에 - modal 이라는 작은 컴포넌트를 띄운다. 그래서 <APP>이 부모, <MODAL>이 자식
