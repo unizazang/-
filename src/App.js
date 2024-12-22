@@ -44,8 +44,12 @@ function App() {
     "강남 추천 맛집",
   ]);
 
-  let [선택글, 선택글변경] = useState(0); //선택된 글의 인덱스를 저장
+  let [title, setTitle] = useState(0); //선택된 글의 인덱스를 저장
+  /* 새 state를 만들어야 하는 이유? ==================
+  현재 글제목은 모든 글 제목을 담고 있고, modal은 모달의 표시 여부만 담당
+  어떤 글이 선택되었는지를 저장하는 별도의 state가 없어서 항상 같은것만 보여주는것!!!  */
 
+  
   //map 사용법 =====
   //[1,2,3].map(function(){})
   //map은 모든 array자료 뒤에 쓸 수 있다. map() 안에는 콜백 함수(괄호안에 함수가 있는 것)가 들어간다.
@@ -209,7 +213,7 @@ function App() {
                 onClick={() => {
                   setModal(true);
                   // 선택된 글의 인덱스 업데이트
-                  선택글변경(i);
+                  setTitle(i);
                   modal == true ? setModal(false) : "";
                 }}
               >
@@ -246,17 +250,20 @@ function App() {
       4. 따봉변경(따봉[i] + 1); < NaN
       5. 따봉0 따봉1 따봉2 따봉변경0 따봉변경1 따봉변경2 이렇게 만들어서 변수자리에 ㅋㅋㅋ 따봉i 라고 써봤는데 오류뜸...
       6. 진짜 혹시나 해서 e 랑 e.target.따봉변경 이렇게 해봤는데 오류 ㅠㅠ
-      7. 따봉변경[i](따봉 + 1); < 오류
-      
-
-
+      7. 따봉변경[i](따봉 + 1); < 오류 
 */}
+
+{/* <button onClick={ () => { setTitle(0); console.log(title); }}>글제목0</button>
+<button onClick={ () => { setTitle(1); console.log(title); }}>글제목1</button>
+<button onClick={ () => { setTitle(2); console.log(title); }}>글제목2</button> */}
+
+
 
       {/* JSX에서 자바스크립트를 문법을 쓰고 싶으면 그냥 중괄호를 열면 된다!!!!!!!!! 
     === JSX안에서는 if문/for문 이런걸 쓸수 없다. 대신 !!!삼항연산자!!! 씀. 
       => html 중간에 조건문을 써야 하면 삼항연산자를 쓰면 된다. */}
       {
-        modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} 선택글={선택글} /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
+        modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} title={title} /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
         // 이 안에서는 세미콜론 쓰면 안되는듯? + 함수 쓸때도 ()로 호출하는거 아니고 그냥 이름만!!!!!
       }
 
@@ -313,13 +320,19 @@ function App() {
 // const Modal2 = () => {} 변수를 만들고 그안에 함수를 넣었으니까 이렇게 만들어도 됨.
 
 function Modal(props) {
+
+  // let [title, setTitle] = useState(0); 
+  // state를 function App 에 만들지 않고 여기 컴포넌트에 바로 만들어도 됨!!!! 그러면 props 전송 안해도 되니까 편리하다. 근데 App, Modal 등 여러군데에서 사용되는거다 > 그러면 App에만 만들어야 함. (가장 상위 컴포넌트라서) props는 아래에서 위로는 안보내지니까.
+
   let copy = [...props.글제목];
   copy[0] = "딱대 코트 추천";
 
   return (
     <div className="modal">
-      <h4>{props.글제목[props.선택글]}</h4>
-      {/* props.글제목. 에서 내가 원하는 글 > 선택글 안에 담긴 인덱스임!~!!! */}
+      <h4>{props.글제목[props.title]}</h4>
+      {/* props.글제목. 에서 내가 원하는 글 > title 안에 담긴 인덱스임!~!!! */}
+      {/* props.글제목[0]이면 0번째 글, props.글제목[1]이면 1번째 글... > props.글제목[title]이면 선택된 글이 보이겠네! > 근데 function App 안에 있으니까 props로 넘겨줘야 함. */}
+
       {/* 내가 정한 name 으로 불러와야함!!!!! 주의!!!!! */}
       {/* 모달에서 어떤 글을 보여줄 것인지 state에 저장한 뒤 그 state를 Modal에 전달해야 함 */}
       <p>날짜</p>
