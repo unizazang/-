@@ -44,6 +44,8 @@ function App() {
     "강남 추천 맛집",
   ]);
 
+  let [선택글, 선택글변경] = useState(0); //선택된 글의 인덱스를 저장
+
   //map 사용법 =====
   //[1,2,3].map(function(){})
   //map은 모든 array자료 뒤에 쓸 수 있다. map() 안에는 콜백 함수(괄호안에 함수가 있는 것)가 들어간다.
@@ -206,6 +208,8 @@ function App() {
               <h4
                 onClick={() => {
                   setModal(true);
+                  // 선택된 글의 인덱스 업데이트
+                  선택글변경(i);
                   modal == true ? setModal(false) : "";
                 }}
               >
@@ -252,7 +256,7 @@ function App() {
     === JSX안에서는 if문/for문 이런걸 쓸수 없다. 대신 !!!삼항연산자!!! 씀. 
       => html 중간에 조건문을 써야 하면 삼항연산자를 쓰면 된다. */}
       {
-        modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
+        modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} 선택글={선택글} /> : null // true 이면 그냥 <Modal/> 이렇게 넣으면 된다. 아무것도 안할거면 null을 넣으면 됨. 아니면 ''
         // 이 안에서는 세미콜론 쓰면 안되는듯? + 함수 쓸때도 ()로 호출하는거 아니고 그냥 이름만!!!!!
       }
 
@@ -314,8 +318,10 @@ function Modal(props) {
 
   return (
     <div className="modal">
-      <h4>{props.글제목[0]}</h4>
+      <h4>{props.글제목[props.선택글]}</h4>
+      {/* props.글제목. 에서 내가 원하는 글 > 선택글 안에 담긴 인덱스임!~!!! */}
       {/* 내가 정한 name 으로 불러와야함!!!!! 주의!!!!! */}
+      {/* 모달에서 어떤 글을 보여줄 것인지 state에 저장한 뒤 그 state를 Modal에 전달해야 함 */}
       <p>날짜</p>
       <p>상세내용</p>
       <button
