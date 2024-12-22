@@ -33,11 +33,14 @@ function Appex() {
                     setModal(true);
                     setTitle(i);
                     modal == true ? setModal(false) : null;
-                }}> {a}    <span onClick={()=>{
+                }}> {a}    <span onClick={(e)=>{
+                    e.stopPropagation()
                     let cpy = [...따봉];
                     cpy[i] = cpy[i] + 1;// 따봉이 아니라 cpy를 바꿔야했다!!
                     따봉변경(cpy);
                 }}> 👍 </span>
+                {/* 더 작은걸 클릭해도 상위껄로 이벤트가 퍼지는 현상 : 이벤트버블링
+                그걸 막으려면 e.stopPropagation() : 이벤트버블링을 막아주세요. */}
                 {" "}
                 {따봉[i]}</h4>
                 <p>2021년 1월 30일</p>
@@ -46,6 +49,14 @@ function Appex() {
         })
     }
 
+    <input onChange={(e)=>{ //이벤트객체 e
+        console.log(e.target.value); // e.target.value 이 안의 값
+        // onChange랑 같은거 onInput
+    }}/>
+    {/* HTML에서는 input이 하나짜리태그지만 react에서는 아니다. 태그를 하나 열었으면 무조건 닫아야 함.
+    
+
+    */}
     { modal == true ? <Modal 글제목={글제목} 글제목변경={글제목변경} title={title} /> : null //여기에 세미콜론 쓰면 안됨.
     // <Modal  /> 이게아니고 모달이 나와야 하니까 false 일때 들어가야함!!!!
     }

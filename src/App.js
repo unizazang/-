@@ -229,6 +229,9 @@ function App() {
                     따봉변경(copy); // 따봉 state를 copy본으로 갈아치운다.
                   }}
                 >
+                  {/* 더 작은걸 클릭해도 상위껄로 이벤트가 퍼지는 현상 : 이벤트버블링
+                그걸 막으려면 e.stopPropagation() : 이벤트버블링을 막아주세요. */}
+           
                   {" "}
                   🥰
                 </span>{" "}
@@ -257,7 +260,12 @@ function App() {
 <button onClick={ () => { setTitle(1); console.log(title); }}>글제목1</button>
 <button onClick={ () => { setTitle(2); console.log(title); }}>글제목2</button> */}
 
-
+<input onChange={(e)=>{ //이벤트객체 e
+        console.log(e.target.value); // e.target.value 이 안의 값
+        // onChange랑 같은거 onInput
+    }}/>
+    {/* HTML에서는 input이 하나짜리태그지만 react에서는 아니다. 태그를 하나 열었으면 무조건 닫아야 함.
+    
 
       {/* JSX에서 자바스크립트를 문법을 쓰고 싶으면 그냥 중괄호를 열면 된다!!!!!!!!! 
     === JSX안에서는 if문/for문 이런걸 쓸수 없다. 대신 !!!삼항연산자!!! 씀. 
