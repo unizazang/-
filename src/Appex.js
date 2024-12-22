@@ -61,7 +61,9 @@ function Appex() {
   function Modal(props){
     let copy = [...props.글제목];
     copy[0] = '딱대 코트 완성';
-    // 얘는 왜 반영이 안되지?
+    copy[1] = '딱대 코트 완성';
+    copy[2] = '딱대 코트 완성';
+
 
     return(
         <div className="modal">
