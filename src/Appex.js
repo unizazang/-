@@ -9,6 +9,7 @@ function Appex() {
     let [modal, setModal] = useState(false);
     let [따봉, 따봉변경] = useState([0,0,0]);
     let [title, setTitle] = useState(0);
+    let [입력값] = useState('');
 
 // '2021년 1월 30일', '2024년 12월 6일', '2023년 2월 13일'
     return (
