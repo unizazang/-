@@ -10,6 +10,7 @@ function Appex() {
     let [따봉, 따봉변경] = useState([0,0,0]);
     let [title, setTitle] = useState(0);
     let [입력값, 입력값변경] = useState('');
+    // let [삭제값, 삭제값변경] = useState(0);
 
 // '2021년 1월 30일', '2024년 12월 6일', '2023년 2월 13일'
     return (
@@ -27,6 +28,7 @@ function Appex() {
 {/* map이든 뭐든 자바스크립트 쓰려면 중괄호 열어야함!!!!!! */}
         {
         글제목.map((a, i)=> {
+            
             return(
             <div className="list">
                 <h4 onClick={()=>{
@@ -47,8 +49,11 @@ function Appex() {
                 <p>2021년 1월 30일</p>
                 <button onClick={()=>{
                     let copy = [...글제목];
-                    copy.pop(i);
+
+                    copy.splice(i,i+1);
+                    // copy.pop(삭제값);
                     // 몇번째인덱스만 삭제되어 버리네... 뭘로해야하지?
+                    // 오 pop말고 splice로 하니까 됨!!!
                     글제목변경(copy);
                 }}>삭제하기</button>
             </div> 
