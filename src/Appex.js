@@ -9,7 +9,7 @@ function Appex() {
     let [modal, setModal] = useState(false);
     let [따봉, 따봉변경] = useState([0,0,0]);
     let [title, setTitle] = useState(0);
-    let [입력값] = useState('');
+    let [입력값, 입력값변경] = useState('');
 
 // '2021년 1월 30일', '2024년 12월 6일', '2023년 2월 13일'
     return (
@@ -45,15 +45,34 @@ function Appex() {
                 {" "}
                 {따봉[i]}</h4>
                 <p>2021년 1월 30일</p>
+                <button onClick={()=>{
+                    let copy = [...글제목];
+                    copy.pop(i);
+                    글제목변경(copy);
+                }}>삭제하기</button>
             </div> 
             )
         })
     }
 
     <input onChange={(e)=>{ //이벤트객체 e
-        console.log(e.target.value); // e.target.value 이 안의 값
+        입력값변경(e.target.value);
+        // console.log(입력값) e.target.value 이 안의 값
+        // cf. 왜 한박자 늦게되나? > state변경은 비동기로 처리하기 때문에 냅두고 다음줄 먼저 실행함!!
+        // 그래서 다음줄을 먼저 실행함.
+
+       
         // onChange랑 같은거 onInput
-    }}/>
+    }}
+    />
+     <button onClick={()=>{
+            let cpy = [...글제목];
+            cpy.push(입력값);
+            입력값변경(cpy);
+        }}>글쓰기</button>
+   
+
+
     {/* HTML에서는 input이 하나짜리태그지만 react에서는 아니다. 태그를 하나 열었으면 무조건 닫아야 함.
     
 
