@@ -48,6 +48,7 @@ function Appex() {
                 <button onClick={()=>{
                     let copy = [...글제목];
                     copy.pop(i);
+                    // 몇번째인덱스만 삭제되어 버리네... 뭘로해야하지?
                     글제목변경(copy);
                 }}>삭제하기</button>
             </div> 
@@ -68,7 +69,7 @@ function Appex() {
      <button onClick={()=>{
             let cpy = [...글제목];
             cpy.push(입력값);
-            입력값변경(cpy);
+            글제목변경(cpy);
         }}>글쓰기</button>
    
 
