@@ -50,10 +50,16 @@ function Appex() {
                 <button onClick={()=>{
                     let copy = [...글제목];
 
-                    copy.splice(i,i+1);
-                    // copy.pop(삭제값);
-                    // 몇번째인덱스만 삭제되어 버리네... 뭘로해야하지?
+                    copy.splice(i,1);
+                    
                     // 오 pop말고 splice로 하니까 됨!!!
+                    // 중간에 있는 걸 지우면 뒤에꺼까지 같이 날라가 버리는데 이건 뭐지?
+                    // copy.splice(i,i+1); splice의 두번째 인자는 삭제할 !!갯수!!였음!!!
+                    
+                    // copy.pop(삭제값);
+                    // 마지막 인덱스만 삭제되어 버리네... 뭘로해야하지?
+                    // ㄴ pop은 무조건 마지막 요소를 삭제한다!!! 내가 파라미터를 넘겨 봤자 소용 없음.
+                    
                     글제목변경(copy);
                 }}>삭제하기</button>
             </div> 
@@ -73,7 +79,8 @@ function Appex() {
     />
      <button onClick={()=>{
             let cpy = [...글제목];
-            cpy.push(입력값);
+            cpy.push(입력값); 
+            // cpy.unshift(입력값); < 이건 맨 앞에 등록되고
             글제목변경(cpy);
         }}>글쓰기</button>
    
