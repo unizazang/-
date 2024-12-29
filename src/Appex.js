@@ -118,7 +118,7 @@ function Appex() {
       <button
         onClick={() => {
           let cpy = [...글제목];
-          cpy.push(입력값);
+          입력값 == "" ? alert("내용을 입력해 주세요.") : cpy.push(입력값);
           // cpy.unshift(입력값); < 이건 맨 앞에 등록됨
           글제목변경(cpy);
 
