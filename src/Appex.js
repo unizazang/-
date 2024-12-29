@@ -103,6 +103,16 @@ function Appex() {
           // 그래서 다음줄을 먼저 실행함.
 
           // onChange랑 같은거 onInput
+
+          /* 여기서 잘못한거
+
+           e.target.value == ""
+            ? alert("내용을 입력해 주세요.")
+            : 입력값변경(e.target.value);
+            라고 했는데
+            이걸 input이 바뀔때마다 하는게아니라 submit 했을때 검사했어야 함!!!
+          
+          */
         }}
       />
       <button
