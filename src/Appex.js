@@ -82,6 +82,10 @@ function Appex() {
                 // copy.pop(삭제값);
                 // 마지막 인덱스만 삭제되어 버리네... 뭘로해야하지?
                 // ㄴ pop은 무조건 마지막 요소를 삭제한다!!! 내가 파라미터를 넘겨 봤자 소용 없음.
+                글제목변경(copy);
+                let dcpy = [...따봉];
+                dcpy.splice(i, 1);
+                따봉변경(dcpy);
               }}
             >
               삭제하기
@@ -111,7 +115,10 @@ function Appex() {
           let nalcpy = [...날짜];
           nalcpy.push(today);
           날짜변경(nalcpy);
-          // 이건 안써야되나봐
+
+          let dcpy = [...따봉];
+          dcpy.push(뉴따봉);
+          따봉변경(dcpy);
         }}
       >
         글쓰기
